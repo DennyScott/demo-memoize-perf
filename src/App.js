@@ -32,7 +32,7 @@ export default function App() {
       <div className="tiles">
         {allTiles.map(({ x, y, id }) => (
           <Tile x={x} y={y} key={id} max={numberOfTiles} tileSize={64}>
-            <SelectableTile x={x} y={y}></SelectableTile>
+            <SelectableTile></SelectableTile>
           </Tile>
         ))}
       </div>
