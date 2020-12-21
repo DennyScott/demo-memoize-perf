@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Tile from "./Tile";
+import SelectableTile from "./SelectableTile";
 
-function App() {
+export default function App() {
+  const [numberOfTiles, setNumberOfTiles] = useState(20);
+  const [increment, setIncrement] = useState(0);
+  const [allTiles, setAllTiles] = useState([]);
+
+  useEffect(() => {
+    const tiles = [];
+
+    for (let i = 0; i < numberOfTiles; i++) {
+      for (let j = 0; j < numberOfTiles; j++) {
+        tiles.push({ x: i, y: j, id: `${i},${j}` });
+      }
+    }
+
+    setAllTiles(tiles);
+  }, [numberOfTiles]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h1>This is some initial layout I want here</h1>
+      </div>
+      <div>
+        <button onClick={() => setIncrement(increment + 1)}>+1</button>
+        {increment}
+      </div>
+      <div className="tiles">
+        {allTiles.map(({ x, y, id }) => (
+          <Tile x={x} y={y} key={id} max={numberOfTiles} tileSize={64}>
+            <SelectableTile x={x} y={y}></SelectableTile>
+          </Tile>
+        ))}
+      </div>
     </div>
   );
 }
-
-export default App;
