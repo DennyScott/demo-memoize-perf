@@ -9,7 +9,7 @@ function Tile(props) {
 
   const rightBorder = x === max - 1 ? regularBorder : "0";
   const bottomBorder = y === 0 ? regularBorder : "0";
-  const color = useMemo(() => {
+  const color = () => {
     let i = 0;
     while (i < 5000000) {
       i++;
@@ -17,7 +17,7 @@ function Tile(props) {
     return `rgb(${x % 2}${y % 5}${x % 5},${y % 2}${x % 5}${y % 2},${x % 2}${
       y % 5
     }${x % 5})`;
-  }, [x, y]);
+  };
 
   const style = {
     width: `${tileSize}px`,
@@ -27,10 +27,10 @@ function Tile(props) {
     border: regularBorder,
     borderRight: rightBorder,
     borderBottom: bottomBorder,
-    backgroundColor: color,
+    backgroundColor: color(),
   };
 
   return <div style={style}>{children}</div>;
 }
 
-export default Tile;
+export default React.memo(Tile);

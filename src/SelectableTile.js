@@ -2,14 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function SelectableTile(props) {
-  const { children } = props;
-
   const style = {
     height: "100%",
     width: "100%",
   };
 
-  return <div style={style}>{children}</div>;
+  return <div style={style}></div>;
 }
 SelectableTile.propTypes = {
   children: PropTypes.node,
@@ -17,4 +15,4 @@ SelectableTile.propTypes = {
   y: PropTypes.number.isRequired,
 };
 
-export default SelectableTile;
+export default React.memo(SelectableTile);
